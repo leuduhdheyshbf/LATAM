@@ -1,5 +1,6 @@
 {
   "VITE_AUTH_ENABLED": "false",
+  "VITE_RECRUITMENT_API_URL": "https://latam-api.nyxaria.workers.dev",
   "deploy": {
     "database": false
   }
