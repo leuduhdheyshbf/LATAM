@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/candidatura",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "LATAM 友 · Formulário de recrutamento",
+      "hasCanvas": false,
+      "bodyTextLen": 317,
+      "bodyTextHash": "6bc456483c210175f708653979625c8dbdaf00282a4a3799821a0aa1c20e5193",
+      "bodyTextPrefix": "LATAM 友 Início CANDIDATURA Quem é você Dados da conta e da pesso",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/form-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "LATAM 友 · Formulário de recrutamento",
+      "hasCanvas": false,
+      "bodyTextLen": 317,
+      "bodyTextHash": "6bc456483c210175f708653979625c8dbdaf00282a4a3799821a0aa1c20e5193",
+      "bodyTextPrefix": "LATAM 友 Início CANDIDATURA Quem é você Dados da conta e da pesso",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/form-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/form-preview.json"
+}

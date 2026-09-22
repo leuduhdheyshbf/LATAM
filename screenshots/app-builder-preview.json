@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "LATAM 友 · Formulário de recrutamento",
+      "hasCanvas": false,
+      "bodyTextLen": 1207,
+      "bodyTextHash": "d9bc9b55c47d11c074849ee695043a2bf31a77b63e18538674e4e20ee4d585df",
+      "bodyTextPrefix": "LATAM 友 Candidatar-se RECRUTAMENTO ABERTO LATAM 友 Formulário de ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "LATAM 友 · Formulário de recrutamento",
+      "hasCanvas": false,
+      "bodyTextLen": 1207,
+      "bodyTextHash": "d9bc9b55c47d11c074849ee695043a2bf31a77b63e18538674e4e20ee4d585df",
+      "bodyTextPrefix": "LATAM 友 Candidatar-se RECRUTAMENTO ABERTO LATAM 友 Formulário de ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
