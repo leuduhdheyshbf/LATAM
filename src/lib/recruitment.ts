@@ -92,27 +92,51 @@ export const FORM_STEPS = [
 
 const required = (message: string) => z.string().trim().min(1, message);
 
+const oneOf = (options: readonly { value: string }[], message: string) =>
+  required(message).refine((value) => options.some((option) => option.value === value), message);
+
+function isValidSchedule(value: string): boolean {
+  const text = value.trim().toLowerCase();
+  if (!/^[\d\s:hàáâãéêíóôõúüç-]+$/i.test(text)) return false;
+
+  const matches = [...text.matchAll(/(?:^|\D)(\d{1,2})(?::([0-5]\d))?\s*h?/g)];
+  if (!matches.length) return false;
+
+  return matches.every((match) => Number(match[1]) >= 0 && Number(match[1]) <= 23);
+}
+
 export const recruitmentSchema = z.object({
-  nome: required("Informe seu nome").min(2, "Informe seu nome completo"),
+  nome: required("Informe seu nome")
+    .min(2, "Informe seu nome completo")
+    .regex(/^[\p{L}]+(?:[\s'-][\p{L}]+)*$/u, "O nome deve conter apenas letras e espaços"),
   idade: required("Informe sua idade")
     .regex(/^\d{1,3}$/, "Informe uma idade válida")
     .refine((value) => {
       const age = Number(value);
       return age >= 12 && age <= 80;
     }, "A idade deve ser entre 12 e 80 anos"),
-  nick: required("Informe seu nickname no jogo").min(2, "Informe seu nickname"),
+  nick: required("Informe seu nickname no jogo")
+    .min(2, "Informe seu nickname")
+    .max(30, "Nickname muito longo"),
   idConta: required("Informe o ID da sua conta").regex(
     /^\d{6,15}$/,
     "O ID da conta deve ter de 6 a 15 dígitos",
   ),
-  cidadeEstado: required("Informe sua cidade/estado").min(3, "Informe cidade e estado"),
-  whatsapp: required("Informe seu WhatsApp").min(10, "Informe um WhatsApp válido"),
-  funcao: required("Selecione sua principal função"),
-  patenteAtual: required("Selecione sua patente atual"),
-  experienciaCompetitiva: required("Responda sobre experiência competitiva"),
-  experienciaDescricao: z.string().optional(),
-  tempoDisponivel: required("Selecione quanto tempo fica disponível por dia"),
-  horarioDisponivel: required("Informe seu horário disponível para jogar"),
+  cidadeEstado: required("Informe sua cidade/estado").min(3, "Informe cidade e estado").max(80, "Cidade/Estado muito longo"),
+  whatsapp: required("Informe seu WhatsApp")
+    .regex(/^[+\d\s().-]+$/, "Informe apenas um número de WhatsApp válido")
+    .refine((value) => {
+      const digits = value.replace(/\D/g, "");
+      return digits.length >= 10 && digits.length <= 13;
+    }, "Informe um WhatsApp válido"),
+  funcao: oneOf(FUNCOES, "Selecione uma função válida"),
+  patenteAtual: oneOf(PATENTES_LATAM, "Selecione uma patente válida"),
+  experienciaCompetitiva: oneOf(SIM_NAO, "Selecione uma opção válida"),
+  experienciaDescricao: z.string().trim().max(800, "Descrição muito longa").optional(),
+  tempoDisponivel: oneOf(HORAS_DISPONIBILIDADE, "Selecione uma disponibilidade válida"),
+  horarioDisponivel: required("Informe seu horário disponível para jogar")
+    .max(80, "Horário muito longo")
+    .refine(isValidSchedule, "Informe horários válidos, por exemplo: 19h às 23h"),
 });
 
 export type RecruitmentInput = z.input<typeof recruitmentSchema>;
