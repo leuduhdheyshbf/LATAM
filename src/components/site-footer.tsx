@@ -9,6 +9,7 @@ export function SiteFooter() {
       </p>
       <p className="mt-2 text-sm text-muted-foreground">{GUILD_TAGLINE}</p>
       <p className="mt-4 text-xs text-subtle">{GUILD_NAME} · Recrutamento Free Fire</p>
+      <p className="mt-3 text-xs tracking-[0.12em] text-muted-foreground">by Souza</p>
     </footer>
   );
 }
