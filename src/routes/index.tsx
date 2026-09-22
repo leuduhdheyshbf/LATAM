@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { ArrowUp } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { Hero } from "@/components/hero";
 import { Pillars } from "@/components/pillars";
@@ -28,17 +28,10 @@ function Home() {
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: 0.45 }}
       >
-        <p className="text-xs font-semibold tracking-[0.18em] text-accent uppercase">Vagas abertas</p>
-        <h2 className="font-display mt-2 text-4xl tracking-wide text-silver sm:text-5xl">
-          Pronto para vestir o brasão?
-        </h2>
-        <p className="mt-3 max-w-md text-sm text-muted-foreground">
-          Candidatura rápida, em três etapas. A liderança responde pelo WhatsApp.
-        </p>
-        <Link to="/candidatura" className="cta-jump mt-6">
-          Preencher candidatura
-          <ArrowRight className="size-4" />
-        </Link>
+        <a href="#" className="cta-ghost mt-6">
+          <ArrowUp className="size-4" />
+          Voltar para o topo
+        </a>
       </motion.section>
 
       <SiteFooter />
