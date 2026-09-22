@@ -274,12 +274,20 @@ export async function submitRecruitment(values: RecruitmentValues): Promise<void
   const controller = new AbortController();
   const timer = window.setTimeout(() => controller.abort(), 20000);
   try {
-    await fetch(GOOGLE_SCRIPT_URL, {
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload),
       signal: controller.signal,
     });
+
+    const result = (await response.json().catch(() => null)) as
+      | { success?: boolean; error?: string }
+      | null;
+
+    if (!response.ok || !result?.success) {
+      throw new Error(result?.error || "O servidor recusou os dados. Confira o formulário.");
+    }
   } catch (error) {
     if (error instanceof DOMException && error.name === "AbortError") {
       throw new Error("Tempo esgotado. Confira a conexão e tente de novo.");
