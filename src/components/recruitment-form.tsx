@@ -191,13 +191,23 @@ export function RecruitmentForm({ onSubmitted }: RecruitmentFormProps) {
                   {...register("cidadeEstado")}
                 />
               </Field>
+              <Field number={6} label="Qual seu WhatsApp?" htmlFor="whatsapp" error={errors.whatsapp?.message}>
+                <Input
+                  id="whatsapp"
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  placeholder="Ex: (11) 99999-9999"
+                  {...register("whatsapp")}
+                />
+              </Field>
             </SectionCard>
           ) : null}
 
           {step === 1 ? (
             <SectionCard id="perfil" eyebrow="02" title="Perfil no jogo" icon={Trophy}>
               <Field
-                number={6}
+                number={7}
                 label="Qual sua principal função?"
                 htmlFor="funcao"
                 error={errors.funcao?.message}
@@ -216,7 +226,7 @@ export function RecruitmentForm({ onSubmitted }: RecruitmentFormProps) {
                 />
               </Field>
               <Field
-                number={7}
+                number={8}
                 label="Qual sua patente atual?"
                 htmlFor="patenteAtual"
                 error={errors.patenteAtual?.message}
@@ -235,7 +245,7 @@ export function RecruitmentForm({ onSubmitted }: RecruitmentFormProps) {
                 />
               </Field>
               <Field
-                number={8}
+                number={9}
                 label="Já teve experiência em competitivo, guildas ou campeonatos?"
                 error={errors.experienciaCompetitiva?.message}
               >
@@ -253,7 +263,7 @@ export function RecruitmentForm({ onSubmitted }: RecruitmentFormProps) {
                 />
               </Field>
               <Field
-                number={9}
+                number={10}
                 label="Se sim, conte brevemente sua experiência."
                 htmlFor="experienciaDescricao"
                 error={errors.experienciaDescricao?.message}
@@ -272,7 +282,7 @@ export function RecruitmentForm({ onSubmitted }: RecruitmentFormProps) {
           {step === 2 ? (
             <SectionCard id="disponibilidade" eyebrow="03" title="Disponibilidade" icon={Clock}>
               <Field
-                number={10}
+                number={11}
                 label="Quanto tempo você costuma ficar disponível para jogar por dia?"
                 error={errors.tempoDisponivel?.message}
               >
@@ -291,7 +301,7 @@ export function RecruitmentForm({ onSubmitted }: RecruitmentFormProps) {
                 />
               </Field>
               <Field
-                number={11}
+                number={12}
                 label="Qual seu horário normalmente disponível para jogar?"
                 htmlFor="horarioDisponivel"
                 error={errors.horarioDisponivel?.message}
