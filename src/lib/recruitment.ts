@@ -252,11 +252,14 @@ export function displayValue(key: keyof RecruitmentValues, values: RecruitmentVa
   }
 }
 
-export const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbw0ht83Y1DOMCS9woV8iXKK9K94Toy6ohIKSn3WN3WNkvOXcnyCK_bvSPNJcT2ZSSNy/exec";
+const RECRUITMENT_API_URL = import.meta.env.VITE_RECRUITMENT_API_URL;
 
 export async function submitRecruitment(values: RecruitmentValues): Promise<void> {
-  const payload: RecruitmentValues = {
+  if (!RECRUITMENT_API_URL) {
+    throw new Error("A API de recrutamento não está configurada.");
+  }
+
+  const payload = {
     nome: values.nome,
     idade: values.idade,
     nick: values.nick,
@@ -269,14 +272,15 @@ export async function submitRecruitment(values: RecruitmentValues): Promise<void
     experienciaDescricao: values.experienciaDescricao ?? "",
     tempoDisponivel: values.tempoDisponivel,
     horarioDisponivel: values.horarioDisponivel,
+    website: "",
   };
 
   const controller = new AbortController();
   const timer = window.setTimeout(() => controller.abort(), 20000);
   try {
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
+    const response = await fetch(RECRUITMENT_API_URL, {
       method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
       signal: controller.signal,
     });
